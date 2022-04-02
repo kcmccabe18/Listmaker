@@ -2,7 +2,7 @@ package com.raywenderlich.listmaker.ui.main
 
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
-import com.raywenderlich.listmaker.TaskList
+import com.raywenderlich.listmaker.models.TaskList
 
 class MainViewModel(private val sharedPreferences: SharedPreferences) : ViewModel() {
 
@@ -11,7 +11,9 @@ class MainViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
     val lists: MutableList<TaskList> by lazy {
         retrieveLists()
     }
+
     private fun retrieveLists(): MutableList<TaskList> {
+
         val sharedPreferencesContents = sharedPreferences.all
         val taskLists = ArrayList<TaskList>()
 
@@ -20,6 +22,7 @@ class MainViewModel(private val sharedPreferences: SharedPreferences) : ViewMode
             val list = TaskList(taskList.key, itemsHashSet)
             taskLists.add(list)
         }
+
         return taskLists
     }
 
